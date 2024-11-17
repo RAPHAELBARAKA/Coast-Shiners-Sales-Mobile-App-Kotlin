@@ -26,6 +26,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -41,7 +42,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -51,17 +51,13 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation (libs.retrofit)
-    implementation (libs.converter.gson)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
 
-
-// OkHttp and Logging Interceptor
-    implementation (libs.okhttp)
-    implementation (libs.logging.interceptor)
-    implementation (libs.androidx.lifecycle.viewmodel.ktx)
-    implementation (libs.kotlinx.coroutines.android)
-    implementation (libs.androidx.fragment.ktx) // Update to the latest version
-    implementation (libs.androidx.constraintlayout.v214)// Update to the latest version
-
-
+    // OkHttp and Logging Interceptor
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.androidx.fragment.ktx)
 }

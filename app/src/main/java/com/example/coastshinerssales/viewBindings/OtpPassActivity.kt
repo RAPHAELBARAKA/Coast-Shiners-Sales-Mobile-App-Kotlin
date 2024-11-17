@@ -11,36 +11,45 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.coastshinerssales.R
 import com.example.coastshinerssales.databinding.ActivityOtpBinding
+import com.example.coastshinerssales.databinding.ActivityOtpPassBinding
 import com.example.coastshinerssales.models.requests.ResendOtpRequest
+import com.example.coastshinerssales.models.requests.ResendPassOtpRequest
 import com.example.coastshinerssales.models.requests.VerifyOtpRequest
+import com.example.coastshinerssales.models.requests.VerifyPassOtpRequest
 import com.example.coastshinerssales.repositories.ResendOtpRepo
+import com.example.coastshinerssales.repositories.ResendPassOtpRepo
 import com.example.coastshinerssales.repositories.VerifyOtpRepo
+import com.example.coastshinerssales.repositories.VerifyPassOtpRepo
 import com.example.coastshinerssales.utils.PREFERENCES
 import com.example.coastshinerssales.viewModels.ResendOtpViewModel
+import com.example.coastshinerssales.viewModels.ResendPassOtpViewModel
 import com.example.coastshinerssales.viewModels.VerifyOtpViewModel
+import com.example.coastshinerssales.viewModels.VerifyPassOtpViewModel
 
-class OtpActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityOtpBinding
-    private lateinit var verifyviewModel: VerifyOtpViewModel
+class OtpPassActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityOtpPassBinding
+    private lateinit var viewModel: VerifyPassOtpViewModel
     private lateinit var pref: SharedPreferences
-    private lateinit var resendOtpViewModel: ResendOtpViewModel
+    private lateinit var resendPassOtpViewModel: ResendPassOtpViewModel
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityOtpBinding.inflate(layoutInflater)
+        binding = ActivityOtpPassBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         pref = getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE)
 
         val email = pref.getString("email", "")
-        Log.d("OtpActivity", "Retrieved email: $email")
-
+        Log.d("OtpPassActivity", "Retrieved email: $email")
 
         val otpFields = listOf(
             binding.otp1,
@@ -48,7 +57,7 @@ class OtpActivity : AppCompatActivity() {
             binding.otp3,
             binding.otp4,
 
-        )
+            )
 
         otpFields.forEachIndexed { index, editText ->
             editText.addTextChangedListener(object : TextWatcher {
@@ -61,22 +70,21 @@ class OtpActivity : AppCompatActivity() {
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             })
         }
-// Set up resend OTP button click listener
         binding.resendOtp.setOnClickListener {
             if (email != null) {
                 if (email.isNotEmpty()) {
                     binding.progressBar.visibility = View.VISIBLE
-                    resendOtpViewModel.resendOtp(ResendOtpRequest(email))
+                    resendPassOtpViewModel.resendPassOtp(ResendPassOtpRequest(email))
                 } else {
                     Toast.makeText(this, "Email not found. Please sign up again.", Toast.LENGTH_SHORT).show()
                 }
             }
         }
         // Initialize ViewModel
-        resendOtpViewModel = ViewModelProvider(
-            this, ResendOtpViewModel.ResendOtpViewModelFactory(ResendOtpRepo())
-        ).get(ResendOtpViewModel::class.java)
-        resendOtpViewModel.resendOtpResponse.observe(this, Observer { response ->
+        resendPassOtpViewModel = ViewModelProvider(
+            this, ResendPassOtpViewModel.ResendPassOtpViewModelFactory(ResendPassOtpRepo())
+        ).get(ResendPassOtpViewModel::class.java)
+        resendPassOtpViewModel.resendPassOtpResponse.observe(this, Observer { response ->
             binding.progressBar.visibility = View.GONE
             if (response.isSuccessful) {
                 Toast.makeText(this, "OTP resent successfully. Check your email.", Toast.LENGTH_LONG).show()
@@ -85,20 +93,21 @@ class OtpActivity : AppCompatActivity() {
             }
         })
 
-        verifyviewModel = ViewModelProvider(
+        // Initialize ViewModel
+        viewModel = ViewModelProvider(
             this,
-            VerifyOtpViewModel.VerifyOtpViewModelFactory(VerifyOtpRepo())
-        ).get(VerifyOtpViewModel::class.java)
+            VerifyPassOtpViewModel.VerifyPassOtpViewModelFactory(VerifyPassOtpRepo())
+        ).get(VerifyPassOtpViewModel::class.java)
 
         // Observe OTP verification result
-        verifyviewModel.verifyOtpResponse.observe(this, Observer { response ->
+        viewModel.verifyPassOtpResponse.observe(this, Observer { response ->
             binding.progressBar.visibility = View.GONE
             response?.let {
                 // Check if the response indicates success
                 if (response.isSuccessful) {
                     Toast.makeText(this, "Otp verified successful", Toast.LENGTH_LONG).show()
                     // Navigate to LoginPage if the OTP verification is successful
-                    val intent = Intent(this, LoginPage::class.java)
+                    val intent = Intent(this, ResetPassword::class.java)
                     startActivity(intent)
                     finish() // Optionally finish the current activity so that the user cannot go back to the OTP page
                 } else {
@@ -118,10 +127,10 @@ class OtpActivity : AppCompatActivity() {
 
             if (enteredOTP.length == 4) {
                 // Create the VerifyOtpRequest object with the OTP
-                val verifyOtpRequest = VerifyOtpRequest(enteredOTP)
+                val verifyPassOtpRequest = VerifyPassOtpRequest(enteredOTP)
 
                 // Call the ViewModel method to verify the OTP
-                verifyviewModel.verifyOtp(verifyOtpRequest)
+                viewModel.verifyPassOtp(verifyPassOtpRequest)
             } else {
                 Toast.makeText(this, "Invalid OTP", Toast.LENGTH_LONG).show()
                 binding.progressBar.visibility = View.GONE

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_dashboard"
+        android:title="Dashboard" />
+    <item
+        android:id="@+id/food_category"
+        android:title="Food category" />
+    <item
+        android:id="@+id/household_items"
+        android:title="Household Items" />
+    <item
+        android:id="@+id/clothing_fashion"
+        android:title="Clothing and Fashion" />
+    <item
+        android:id="@+id/office_items"
+        android:title="Office Items" />
+    <item
+        android:id="@+id/electronics"
+        android:title="Electronics" />
+    <item
+        android:id="@+id/healthcare_beauty"
+        android:title="Healthcare and  Beauty" />
+    <item
+        android:id="@+id/logout"
+        android:title="Logout" />
+
+</menu>

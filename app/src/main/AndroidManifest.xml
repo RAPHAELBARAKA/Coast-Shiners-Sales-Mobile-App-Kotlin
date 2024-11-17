@@ -16,6 +16,15 @@
         android:theme="@style/Theme.CoastShinersSales"
         tools:targetApi="31">
         <activity
+            android:name=".viewBindings.ResetPassword"
+            android:exported="false" />
+        <activity
+            android:name=".viewBindings.OtpPassActivity"
+            android:exported="false" />
+        <activity
+            android:name=".viewBindings.ForgotPassword"
+            android:exported="false" />
+        <activity
             android:name=".viewBindings.OtpActivity"
             android:exported="false" />
         <activity
