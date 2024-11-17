@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    kotlin("kapt") // Add this line for kapt plugin
+
 }
 
 android {
@@ -60,4 +62,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.fragment.ktx)
+    implementation( libs.glide)
+    kapt ("com.github.bumptech.glide:compiler:4.15.0")
 }

@@ -1,7 +1,10 @@
 package com.example.coastshinerssales.viewBindings
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -10,12 +13,15 @@ import androidx.lifecycle.lifecycleScope
 import com.example.coastshinerssales.databinding.ActivityLoginPageBinding
 import com.example.coastshinerssales.models.requests.LoginRequest
 import com.example.coastshinerssales.repositories.LoginRepo
+import com.example.coastshinerssales.utils.PREFERENCES
 import com.example.coastshinerssales.viewModels.LoginViewModel
 import kotlinx.coroutines.launch
 
 class LoginPage : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginPageBinding
+    private lateinit var pref: SharedPreferences
+    private lateinit var editor: SharedPreferences.Editor
 
     private val loginViewModel: LoginViewModel by viewModels {
         LoginViewModel.LoginViewModelFactory(LoginRepo())
@@ -26,6 +32,8 @@ class LoginPage : AppCompatActivity() {
         binding = ActivityLoginPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        pref = getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE)
+        editor = pref.edit()
         // Navigate to sign-up page
         binding.Textbtn1.setOnClickListener {
             val intent = Intent(this, SignUpPage::class.java)
@@ -46,6 +54,12 @@ class LoginPage : AppCompatActivity() {
                     when (it.message) {
                         "Login successful" -> {
                             Toast.makeText(this, "Welcome back!", Toast.LENGTH_SHORT).show()
+                            val email = binding.email.text.toString().trim()
+                            if (email.isNotEmpty()) {
+                                editor.putString("email", email)
+                                editor.apply() // Save the email
+                                Log.d("ForgotPassword", "Stored email: $email")
+                            }
                             val intent = Intent(this, NavigationActivity::class.java) // Replace with your destination activity
                             startActivity(intent)
                             finish()

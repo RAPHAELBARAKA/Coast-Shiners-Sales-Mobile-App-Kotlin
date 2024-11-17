@@ -3,13 +3,318 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue"
     tools:context=".viewBindings.DashboardFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical">
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:gravity="center"
+         >
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Welcome!"
+              android:textStyle="bold"
+              android:textColor="@color/blue"
+              android:layout_marginEnd="16dp"/>
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Raphael Baraka"
+              android:textStyle="bold"
+              android:textColor="@color/maroon"/>
+
+      </LinearLayout>
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="POPULAR ITEMS"
+          android:layout_marginTop="5dp"
+          android:textColor="@color/blue"
+        android:textAlignment="center"
+          android:textStyle="bold"/>
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:gravity="center">
+
+        <!-- First Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:layout_marginBottom="16dp">
+
+            <!-- Food Category -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@drawable/card_background"
+                android:gravity="top"
+                android:layout_marginEnd="8dp"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/foodname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Food Category"
+                    android:textSize="10dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal" />
+                <TextView
+                    android:id="@+id/foodprice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="7dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal" />
+
+                <ImageView
+                    android:id="@+id/food"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </ImageView>
+            </LinearLayout>
+
+            <!-- Household Items -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@drawable/card_background"
+                android:gravity="top"
+                android:layout_marginEnd="8dp"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/housename"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Household Items"
+                    android:textSize="10dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal" />
+                <TextView
+                    android:id="@+id/houseprice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="5dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal" />
+
+                <ImageView
+                    android:id="@+id/house"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </ImageView>
+            </LinearLayout>
+
+            <!-- Clothing and Fashion -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@drawable/card_background"
+                android:gravity="top"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/clothename"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Clothing and Fashion"
+                    android:textSize="10dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal" />
+                <TextView
+                    android:id="@+id/clotheprice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="7dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal" />
+
+                <ImageView
+                    android:id="@+id/cloth"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </ImageView>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Second Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <!-- Office Items -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@drawable/card_background"
+                android:gravity="top"
+                android:layout_marginEnd="8dp"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/officename"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Office Items"
+                    android:textColor="@color/white"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal" />
+                <TextView
+                    android:id="@+id/officeprice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="7dp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal" />
+
+                <ImageView
+                    android:id="@+id/office"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </ImageView>
+            </LinearLayout>
+
+            <!-- Electronics -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@drawable/card_background"
+                android:gravity="top"
+                android:layout_marginEnd="8dp"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/electronicname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Electronics"
+                    android:textSize="10dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal" />
+                <TextView
+                    android:id="@+id/electronicprice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="7dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal" />
+
+                <ImageView
+                    android:id="@+id/electronics"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </ImageView>
+            </LinearLayout>
+
+            <!-- Healthcare and Beauty -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@drawable/card_background"
+                android:gravity="top"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/healthname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Healthcare and Beauty"
+                    android:textColor="@color/white"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal" />
+                <TextView
+                    android:id="@+id/healthprice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="7dp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal" />
+
+                <ImageView
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/health"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </ImageView>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+       <androidx.recyclerview.widget.RecyclerView
+           android:id="@+id/dashboardRecyclerView"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="10dp"
+           android:scrollbars="none" />
+       <TextView
+           android:id="@+id/viewAllOrdersTextView"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:gravity="end"
+           android:textStyle="bold"
+           android:textColor="@color/maroon"
+           android:text="View All Orders =>"
+           android:layout_marginEnd="10dp">
+
+       </TextView>
+
+   </LinearLayout>
+
 
 </FrameLayout>

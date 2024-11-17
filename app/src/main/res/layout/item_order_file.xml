@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Outer Vertical LinearLayout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/white_card"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Inner Horizontal LinearLayout -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+           >
+
+            <!-- TextView 1 -->
+            <TextView
+                android:id="@+id/orderNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Order No"
+                android:textStyle="bold"
+                android:textColor="@color/maroon"
+                android:textSize="16sp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="18dp"
+
+                />
+
+            <!-- TextView 2 -->
+            <TextView
+                android:id="@+id/itemName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Item Name"
+                android:textStyle="bold"
+                android:textColor="@color/blue"
+                android:textSize="16sp"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="8dp" />
+
+            <!-- TextView 3 -->
+            <TextView
+                android:id="@+id/quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quantity"
+                android:textStyle="bold"
+                android:layout_marginStart="18dp"
+                android:textColor="@color/blue"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Status"
+                android:textStyle="bold"
+                android:padding="5dp"
+                android:layout_marginTop="30dp"
+                android:background="@color/white"
+                android:layout_marginStart="68dp"
+                android:textColor="@color/maroon"
+                android:textSize="12sp" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/orderDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:textStyle="bold"
+            android:textColor="@color/blue"
+            android:layout_marginStart="6dp"
+            android:padding="10dp"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
