@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".viewBindings.DashboardFragment">
 
    <LinearLayout
@@ -57,7 +59,7 @@
             <!-- Food Category -->
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="140dp"
+                android:layout_height="130dp"
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:background="@drawable/card_background"
@@ -96,7 +98,7 @@
             <!-- Household Items -->
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="140dp"
+                android:layout_height="130dp"
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:background="@drawable/card_background"
@@ -135,7 +137,7 @@
             <!-- Clothing and Fashion -->
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="140dp"
+                android:layout_height="130dp"
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:background="@drawable/card_background"
@@ -181,7 +183,7 @@
             <!-- Office Items -->
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="140dp"
+                android:layout_height="130dp"
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:background="@drawable/card_background"
@@ -220,7 +222,7 @@
             <!-- Electronics -->
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="140dp"
+                android:layout_height="130dp"
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:background="@drawable/card_background"
@@ -259,7 +261,7 @@
             <!-- Healthcare and Beauty -->
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="140dp"
+                android:layout_height="130dp"
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:background="@drawable/card_background"
@@ -296,6 +298,14 @@
         </LinearLayout>
 
     </LinearLayout>
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="MY ORDERS"
+           android:layout_marginTop="5dp"
+           android:textColor="@color/blue"
+           android:textAlignment="center"
+           android:textStyle="bold"/>
        <androidx.recyclerview.widget.RecyclerView
            android:id="@+id/dashboardRecyclerView"
            android:layout_width="match_parent"
@@ -308,6 +318,8 @@
            android:layout_height="wrap_content"
            android:gravity="end"
            android:textStyle="bold"
+           android:layout_marginTop="10dp"
+           android:textSize="16dp"
            android:textColor="@color/maroon"
            android:text="View All Orders =>"
            android:layout_marginEnd="10dp">
@@ -315,6 +327,7 @@
        </TextView>
 
    </LinearLayout>
+
 
 
 </FrameLayout>

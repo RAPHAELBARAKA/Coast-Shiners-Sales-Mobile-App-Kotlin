@@ -5,13 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".viewBindings.NavigationActivity">
+
     <!-- Main Content -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:padding="10dp"
         android:layout_height="match_parent">
 
+
+        <!-- Fragment container -->
+
         <!-- Left ImageView (Drawer Icon) -->
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragment_container_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="80dp"
+            app:layout_constraintBottom_toBottomOf="@+id/bottom_navigation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/drawer"
+            app:layout_constraintVertical_bias="0.0" />
+
         <ImageView
             android:id="@+id/drawer"
             android:layout_width="20dp"
@@ -21,7 +38,6 @@
             android:contentDescription="Drawer Icon"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/fragment_container_view"
             android:layout_marginStart="10dp" />
 
         <!-- Right ImageView (Notification Icon) -->
@@ -34,23 +50,26 @@
             android:contentDescription="Notification Icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/fragment_container_view"
             android:layout_marginEnd="10dp" />
 
-        <!-- Fragment container -->
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragment_container_view"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="5dp"
-            app:layout_constraintTop_toBottomOf="@+id/drawer"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+        <!-- Bottom Navigation View (Placed last to be on top) -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:elevation="8dp"
+        app:itemIconSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu"
+
+    app:itemIconTint="@color/blue"
+
+    app:itemTextColor="@color/blue" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Drawer layout with menu items -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"
         android:layout_width="wrap_content"
