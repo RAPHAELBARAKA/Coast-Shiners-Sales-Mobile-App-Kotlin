@@ -1,14 +1,140 @@
-<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".viewBindings.OrderingFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:padding="16dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/card_background"
+    >
+    <!-- Item Image -->
+    <ImageView
+        android:id="@+id/itemImageView"
+        android:layout_width="160dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        android:contentDescription="item_image" />
+
+    <!-- Item Name -->
+    <TextView
+        android:id="@+id/itemNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:textColor="@android:color/white" />
+
+    <!-- Item Price -->
+    <TextView
+        android:id="@+id/itemPriceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center"
+        android:textSize="18sp"
+        android:layout_marginBottom="3dp"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>
+            <!-- Size Input -->
+            <EditText
+                android:id="@+id/sizeEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/grey_textfields"
+                android:hint="Enter Size"
+                android:padding="16dp"
+                android:textSize="15sp" />
+
+            <!-- Color Input -->
+            <EditText
+                android:id="@+id/colorEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/grey_textfields"
+                android:hint="Enter Color"
+                android:padding="16dp"
+                android:textSize="15sp"/>
+
+            <!-- Quantity Controls -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/decrementButton"
+                    android:layout_width="170sp"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:layout_weight="1"
+                    android:textSize="30dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/long_maroon_button"
+                    />
+
+                <TextView
+                    android:id="@+id/quantityTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:text="1"
+                    android:textSize="18sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/incrementButton"
+                    android:layout_width="170sp"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:layout_weight="1"
+                    android:textSize="20dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/long_maroon_button"
+                    />
+            </LinearLayout>
+
+            <!-- Total Price -->
+            <TextView
+                android:id="@+id/totalPriceTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Total Price: Ksh 0"
+                android:textSize="18sp"
+                android:textColor="@android:color/black" />
+
+            <!-- Add to Cart Button -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/addToCartButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/long_blue_button"
+                android:text="Add to Cart"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="10sp"
+                android:layout_marginTop="10dp" />
+        </LinearLayout>
+    </ScrollView>
 </FrameLayout>

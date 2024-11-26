@@ -1,0 +1,49 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".viewBindings.CartOrderingFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/topLeftImageView"
+            android:layout_width="50dp"
+            android:layout_height="20dp"
+            android:layout_marginBottom="15dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/backarrow" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewCart"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+             />
+
+        <TextView
+            android:id="@+id/cartItemTotalPriceTextView"
+            android:layout_width="wrap_content"
+            android:padding="10dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:text="Total Price: Ksh 500.0" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/placeOrder"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Place Order"
+            android:textSize="10dp"
+
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:background="@drawable/long_blue_button"
+            />
+    </LinearLayout>
+</FrameLayout>

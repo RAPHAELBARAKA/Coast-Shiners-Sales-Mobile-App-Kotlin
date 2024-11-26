@@ -1,60 +1,110 @@
 package com.example.coastshinerssales.viewBindings
 
+import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.coastshinerssales.R
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
+import com.example.coastshinerssales.databinding.FragmentOrderingBinding
+import com.example.coastshinerssales.utils.PREFERENCES
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [OrderingFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class OrderingFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var pref: SharedPreferences
+    private lateinit var editor: SharedPreferences.Editor
+    private var quantity: String = "1"  // Quantity stored as String
+    private var itemPrice: String = "0.0"  // Item price stored as String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ordering, container, false)
+    ): View {
+        val binding = FragmentOrderingBinding.inflate(inflater, container, false)
+
+        // Retrieve item details passed as arguments
+        val itemName = arguments?.getString("itemName") ?: "Unknown Item"
+        itemPrice = arguments?.getString("itemPrice") ?: "0.0"  // Get price as String
+        val itemImage = arguments?.getString("itemImage") ?: ""
+
+        // Bind the item details to the views
+        binding.itemNameTextView.text = itemName
+        binding.itemPriceTextView.text = "Ksh $itemPrice"
+        Glide.with(requireContext()).load(itemImage).into(binding.itemImageView)
+
+        // Initialize total price with the default quantity of 1
+        binding.quantityTextView.text = quantity
+        binding.totalPriceTextView.text = "Total Price: Ksh ${calculateTotalPrice()}"
+
+        // Function to update total price
+        fun updateTotalPrice() {
+            binding.totalPriceTextView.text = "Total Price: Ksh ${calculateTotalPrice()}"
+        }
+
+        // Handle quantity increment
+        binding.incrementButton.setOnClickListener {
+            quantity = (quantity.toInt() + 1).toString()  // Increment and keep as String
+            binding.quantityTextView.text = quantity
+            updateTotalPrice()
+        }
+
+        // Handle quantity decrement
+        binding.decrementButton.setOnClickListener {
+            if (quantity.toInt() > 1) {
+                quantity = (quantity.toInt() - 1).toString()  // Decrement and keep as String
+                binding.quantityTextView.text = quantity
+                updateTotalPrice()
+            }
+        }
+
+        // Handle "Add to Cart" button click
+        binding.addToCartButton.setOnClickListener {
+            val size = binding.sizeEditText.text.toString()
+            val color = binding.colorEditText.text.toString()
+
+            if (size.isBlank() || color.isBlank()) {
+                Toast.makeText(requireContext(), "Please enter size and color!", Toast.LENGTH_SHORT).show()
+            } else {
+                val totalPrice = calculateTotalPrice()  // Calculate total price as String
+                pref = requireContext().getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE)
+                editor = pref.edit()
+
+                val newItem = "$itemName,$size,$color,$quantity,$totalPrice"
+                val existingCart = pref.getString("cart", "") ?: ""
+                val updatedCart = if (existingCart.isBlank()) newItem else "$existingCart;$newItem"
+
+                editor.putString("cart", updatedCart).apply()
+                Toast.makeText(requireContext(), "Item added to cart!", Toast.LENGTH_SHORT).show()
+
+                // Optionally navigate to CartOrderingFragment
+                val intent = Intent(activity, SinglePageActivity::class.java).apply {
+                    putExtra("FRAGMENT_TO_BE_SHOWN", "OrderingCartFragment")
+                }
+                startActivity(intent)
+            }
+        }
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment OrderingFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            OrderingFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    // Function to calculate total price
+    private fun calculateTotalPrice(): String {
+        // Convert quantity and itemPrice from String to Double and multiply them
+        val totalPrice = quantity.toDouble() * itemPrice.toDouble()
+        return "%.2f".format(totalPrice)  // Return formatted price as String
+    }
+
+    // Function to get cart data from SharedPreferences
+    private fun getCartData(): MutableList<String> {
+        val cartString = pref.getString("cart", "") ?: ""
+        val cartData = mutableListOf<String>()
+        if (cartString.isNotEmpty()) {
+            // Split the string by semicolons to get individual items in the cart
+            cartData.addAll(cartString.split(";"))
+        }
+        return cartData
     }
 }

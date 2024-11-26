@@ -7,8 +7,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 class RetrofitInstance {
-    val BaseUrl = "http://192.168.43.88:3000/"
-
+    companion object {
+        const val BaseUrl = "http://172.16.1.120:3000/"
+    }
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
     }

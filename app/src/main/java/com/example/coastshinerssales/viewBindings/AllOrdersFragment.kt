@@ -3,6 +3,7 @@ package com.example.coastshinerssales.viewBindings
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager  // Add this import
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coastshinerssales.R
 import com.example.coastshinerssales.adapters.AllOrdersAdapter
+import com.example.coastshinerssales.adapters.OrdersAdapter
 import com.example.coastshinerssales.databinding.FragmentAllOrdersBinding
 import com.example.coastshinerssales.repositories.MyOrdersRepo
 import com.example.coastshinerssales.utils.PREFERENCES
@@ -52,8 +54,14 @@ class AllOrdersFragment : Fragment() {
 
         // Observe LiveData for orders
         myOrdersViewModel.orders.observe(viewLifecycleOwner) { orders ->
-            if (orders != null) {
-                // Set the adapter only once, or reinitialize the adapter with updated data
+
+            Log.d("Orders", "Orders data: $orders")
+            val ordersProgressBar = binding.loginProgressBar
+
+            if (orders.isNullOrEmpty()) {
+                ordersProgressBar.visibility = View.VISIBLE
+            } else {
+                ordersProgressBar.visibility = View.GONE
                 ordersAdapter = AllOrdersAdapter(orders)
                 recyclerView.adapter = ordersAdapter
             }
